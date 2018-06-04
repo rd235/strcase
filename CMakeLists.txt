@@ -1,0 +1,4 @@
+cmake_minimum_required(VERSION 2.6)
+set(HEADERS_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/include)
+install(FILES strcase.h DESTINATION ${HEADERS_INSTALL_PATH})
+
