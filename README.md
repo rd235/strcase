@@ -29,7 +29,7 @@ Actually **STRCASE**:
 * requires the string to be specified as comma separated characters,
 * supports "strings" using only literals, digits and underscore.
 
-Regardless from its limitation this macro library is quite useful to write switch statements
+Regardless from its limitations this macro library is quite useful to write switch statements
 in C language using strings (almost) as if it were integers (as in the example above).
 Although **STRCASE** needs commas between characters the string is still readable, and it
 is simple to add cases or change the tags.
@@ -37,7 +37,7 @@ is simple to add cases or change the tags.
 Given that I am going to use this in several projects of mine, I decided to publish it as a
 tiny independent project.
 
-Dear colleagues developers, I hope you'll enjoy it!
+Developer, Dear colleagues, I hope you'll enjoy it!
 
 renzo, June 4 2018
 
