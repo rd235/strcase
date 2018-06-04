@@ -1,5 +1,6 @@
 /*
- *   VUOS: view OS project
+ *   Multiway branch (switch) for short strings in C (in one header file)
+ *
  *   Copyright (C) 2018  Renzo Davoli <renzo@cs.unibo.it> VirtualSquare team.
  *
  *   This program is free software: you can redistribute it and/or modify
