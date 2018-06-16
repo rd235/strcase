@@ -85,6 +85,13 @@
 #define _ASCII_7 0x37
 #define _ASCII_8 0x38
 #define _ASCII_9 0x39
+#define _ASCII_sharp 0x23
+#define _ASCII_dollar 0x24
+#define _ASCII_perc 0x25
+#define _ASCII_star 0x2a
+#define _ASCII_plus 0x2b
+#define _ASCII_minus 0x2d
+
 #define _ASCII_END 0x0
 #define _ASCII(X) ((uint64_t) _ASCII_ ## X)
 
