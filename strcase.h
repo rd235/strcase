@@ -85,12 +85,42 @@
 #define _ASCII_7 0x37
 #define _ASCII_8 0x38
 #define _ASCII_9 0x39
+#define _ASCII_bang 0x21
+#define _ASCII_doublequote 0x22
+#define _ASCII_hash 0x23
 #define _ASCII_sharp 0x23
 #define _ASCII_dollar 0x24
 #define _ASCII_perc 0x25
+#define _ASCII_ampersand 0x26
+#define _ASCII_amp 0x26
+#define _ASCII_quote 0x27
+#define _ASCII_lparen 0x28
+#define _ASCII_rparen 0x29
 #define _ASCII_star 0x2a
 #define _ASCII_plus 0x2b
+#define _ASCII_comma 0x2c
 #define _ASCII_minus 0x2d
+#define _ASCII_dot 0x2e
+#define _ASCII_slash 0x2f
+#define _ASCII_colon 0x3a
+#define _ASCII_semicolon 0x3b
+#define _ASCII_less 0x3c
+#define _ASCII_equal 0x3d
+#define _ASCII_greater 0x3e
+#define _ASCII_question 0x3f
+#define _ASCII_at 0x40
+#define _ASCII_lbracket 0x5b
+#define _ASCII_backslash 0x5c
+#define _ASCII_rbracket 0x5d
+#define _ASCII_caret 0x5e
+#define _ASCII_circumflex 0x5e
+#define _ASCII_underline 0x5f
+#define _ASCII_underscore 0x5f
+#define _ASCII_backquote 0x60
+#define _ASCII_lbrace 0x7b
+#define _ASCII_pipe 0x7c
+#define _ASCII_rbrace 0x7d
+#define _ASCII_tilde 0x7e
 
 #define _ASCII_END 0x0
 #define _ASCII(X) ((uint64_t) _ASCII_ ## X)
@@ -100,7 +130,7 @@
    (_ASCII(e)<<32)+(_ASCII(f)<<40)+(_ASCII(g)<<48)+(_ASCII(h)<<56))
 #define STRCASE(...) _STRCASE(__VA_ARGS__ , END, END, END, END, END, END, END, END)
 
-static inline uint64_t strcase(char *s) {
+static inline uint64_t strcase(const char *s) {
 	int shift;
 	uint64_t retval = 0;
 	for (shift = 0; *s != 0 && shift < 64; s++, shift += 8)
