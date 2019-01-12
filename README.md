@@ -22,22 +22,42 @@ int main(int argc, char * argv[]) {
 }
 ```
 
-Strcase provides one inline function **strcase** and a macro **STRCASE**, both convert
-a *string* in a uint64\_t integer value. Only the first 8 characters are significative.
+`strcase` provides one inline function **strcase**, **strcase\_tolower** and a macro **STRCASE**, both convert
+a *string* in a `uint64_t` integer value. Only the *first 8 characters* are significative.
+
+`strcase_tolower` works like `strcase` but it converts uppercase letters as if they were lowercase.
+
+`strcase` or `strcase_tolower` can be used in the expression of a switch statement to convert a string
+to an integer type, `STRCASE` generates at compile time the integer constants that can be used for the `case`
+stanzas of the switch.
 
 Actually **STRCASE**:
-* requires the string to be specified as comma separated characters,
-* supports "strings" using only literals, digits and underscore.
 
-Regardless from its limitations this macro library is quite useful to write switch statements
+* requires the string to be specified as comma separated characters,
+* supports "strings" using only literals, digits and underscore. Other symbols can appear using their name, as in:
+`STRCASE(slash,e,t,c)`
+
+Regardless of its limitations this macro library is quite useful to write switch statements
 in C language using strings (almost) as if it were integers (as in the example above).
 Although **STRCASE** needs commas between characters the string is still readable, and it
-is simple to add cases or change the tags.
+is simple to add cases or change the tags. This is a simple example:
+```C
+int yes_or_not(const char *s) {
+  switch (strcase_tolower(s)) {
+    case STRCASE(y,e,s):
+    case STRCASE(y):
+        return 1;
+    case STRCASE(n,o):
+    case STRCASE(n):
+        return 0:
+    default:
+        return -1;
+  }
+}
+```
 
 Given that I am going to use this in several projects of mine, I decided to publish it as a
 tiny independent project.
-
-Developer, Dear colleagues, I hope you'll enjoy it!
 
 renzo, June 4 2018
 

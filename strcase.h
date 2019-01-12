@@ -17,6 +17,7 @@
 #ifndef STRCASE_H
 #define STRCASE_H
 #include <stdint.h>
+#include <ctype.h>
 
 #define _ASCII__ 0x5f
 #define _ASCII_a 0x61
@@ -132,6 +133,14 @@ static inline uint64_t strcase(const char *s) {
 	for (shift = 0; *s != 0 && shift < 64; s++, shift += 8)
 		retval |= (((uint64_t)*s) << shift);
 	return retval;
+}
+
+static inline uint64_t strcase_tolower(const char *s) {
+  int shift;
+  uint64_t retval = 0;
+  for (shift = 0; *s != 0 && shift < 64; s++, shift += 8)
+    retval |= (((uint64_t) tolower(*s)) << shift);
+  return retval;
 }
 
 #endif
