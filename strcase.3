@@ -55,6 +55,11 @@ in C language using strings (almost) as if it were integers (as in the example b
 Although \fBSTRCASE\fR needs commas between characters the string is still readable, and it
 is simple to add cases or change the tags.
 
+When the string contains only one char, the value of strcase is the code of the character (e.g. the value of 
+\fBstrcase("a")\fR as well as the value of \fBSTRCASE(a)\fR is \fB'a'\fR)
+
+Strcase is a portable alternative to multi-character constants in C.
+
 .SH EXAMPLE
 The following C program shows the use of \fBstrcase\fR:
 .BR

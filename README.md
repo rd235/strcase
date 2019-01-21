@@ -33,7 +33,7 @@ stanzas of the switch.
 
 Actually **STRCASE**:
 
-* requires the string to be specified as comma separated characters,
+* requires the string to be specified as comma separated characters e.g. `STRCASE(h,e,l,p)`
 * supports "strings" using only literals, digits and underscore. Other symbols can appear using their name, as in:
 `STRCASE(slash,e,t,c)`
 
@@ -60,6 +60,10 @@ Given that I am going to use this in several projects of mine, I decided to publ
 tiny independent project.
 
 renzo, June 4 2018
+
+Strcase is a portable alternative to multi-character constants in C.
+
+When the string contains only one char, the value of strcase is the code of the character (e.g. the value of `strcase("a")` as well as the value of `STRCASE(a)` is `'a'`).
 
 ## how to install strcase
 
