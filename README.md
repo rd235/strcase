@@ -37,6 +37,9 @@ Actually **STRCASE**:
 * supports "strings" using only literals, digits and underscore. Other symbols can appear using their name, as in:
 `STRCASE(slash,e,t,c)`
 
+When the string contains only one char, the value of `strcase` is the code of the character (e.g. the value of
+`strcase("a")` as well as the value of `STRCASE(a)` is 'a')
+
 Regardless of its limitations this macro library is quite useful to write switch statements
 in C language using strings (almost) as if it were integers (as in the example above).
 Although **STRCASE** needs commas between characters the string is still readable, and it
@@ -45,10 +48,10 @@ is simple to add cases or change the tags. This is a simple example:
 int yes_or_not(const char *s) {
   switch (strcase_tolower(s)) {
     case STRCASE(y,e,s):
-    case STRCASE(y):
+    case 'y':
         return 1;
     case STRCASE(n,o):
-    case STRCASE(n):
+    case 'n':
         return 0:
     default:
         return -1;
@@ -64,6 +67,25 @@ renzo, June 4 2018
 Strcase is a portable alternative to multi-character constants in C.
 
 When the string contains only one char, the value of strcase is the code of the character (e.g. the value of `strcase("a")` as well as the value of `STRCASE(a)` is `'a'`).
+
+## update for C++ users
+
+Now `strcase` is available for C++ users, too. Due to the higher level of flexibility of constant management in C++ the **STRCASE** macro can use standard strings. THe same example above in C++ becomes:
+```C++
+int yes_or_not(const char *s) {
+  switch (strcase_tolower(s)) {
+    case STRCASE("yes"):
+    case 'y':
+        return 1;
+    case STRCASE("no"):
+    case 'n':
+        return 0:
+    default:
+        return -1;
+  }
+}
+```
+(credit: thanks to mcpiroman who proposed this extension for C++ users)
 
 ## how to install strcase
 

@@ -19,6 +19,8 @@
 #include <stdint.h>
 #include <ctype.h>
 
+#ifndef __cplusplus
+/* plain C */
 #define __STRCASE_ASCII__ '_'
 #define __STRCASE_ASCII_a 'a'
 #define __STRCASE_ASCII_b 'b'
@@ -129,6 +131,18 @@
 	(__STRCASE_ASCII(a)+(__STRCASE_ASCII(b)<<8)+(__STRCASE_ASCII(c)<<16)+(__STRCASE_ASCII(d)<<24)+ \
 	 (__STRCASE_ASCII(e)<<32)+(__STRCASE_ASCII(f)<<40)+(__STRCASE_ASCII(g)<<48)+(__STRCASE_ASCII(h)<<56))
 #define STRCASE(...) __STRCASE(__VA_ARGS__ , END, END, END, END, END, END, END, END)
+#else
+/* C++ */
+#define STRCASE(str) \
+ (sizeof(str) == 1 ? 0 : (uint64_t)str[0]) + \
+ (sizeof(str) <= 2 ? 0 : (uint64_t)str[1] << 8) + \
+ (sizeof(str) <= 3 ? 0 : (uint64_t)str[2] << 16) + \
+ (sizeof(str) <= 4 ? 0 : (uint64_t)str[3] << 24) + \
+ (sizeof(str) <= 5 ? 0 : (uint64_t)str[4] << 32) + \
+ (sizeof(str) <= 6 ? 0 : (uint64_t)str[5] << 40) + \
+ (sizeof(str) <= 7 ? 0 : (uint64_t)str[6] << 48) + \
+ (sizeof(str) <= 8 ? 0 : (uint64_t)str[7] << 56)
+#endif
 
 static inline uint64_t strcase(const char *s) {
 	int shift;

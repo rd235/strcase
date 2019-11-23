@@ -38,7 +38,7 @@ convert a \fIstring\fR in a \fBuint64_t\fR integer value. Only the \fIfirst 8 ch
 to an integer type, \fBSTRCASE\fR generates at compile time the integer constants for the \fIcase\fR
 stanzas of the switch.
 
-Actually \fBSTRCASE\fR:
+Actually \fBSTRCASE\fR (C language):
 
 .IP * 3
 requires the string to be specified as comma separated characters,
@@ -55,10 +55,12 @@ in C language using strings (almost) as if it were integers (as in the example b
 Although \fBSTRCASE\fR needs commas between characters the string is still readable, and it
 is simple to add cases or change the tags.
 
-When the string contains only one char, the value of strcase is the code of the character (e.g. the value of 
+When the string contains only one char, the value of strcase is the code of the character (e.g. the value of
 \fBstrcase("a")\fR as well as the value of \fBSTRCASE(a)\fR is \fB'a'\fR)
 
 Strcase is a portable alternative to multi-character constants in C.
+
+Strcase is available for C++ users, too. STRCASE argument in C++ is a short string.
 
 .SH EXAMPLE
 The following C program shows the use of \fBstrcase\fR:
@@ -66,27 +68,57 @@ The following C program shows the use of \fBstrcase\fR:
 .sp
 \&
 .nf
-#include <stdio.h>
-#include <strcase.h>
+     #include <stdio.h>
+     #include <strcase.h>
 
-int yes_or_not(const char *s) {
-  switch (strcase_tolower(s)) {
-    case STRCASE(y,e,s):
-    case STRCASE(y):
-        return 1;
-    case STRCASE(n,o):
-    case STRCASE(n):
-        return 0;
-    default:
-        return -1;
-  }
-}
+     int yes_or_not(const char *s) {
+       switch (strcase_tolower(s)) {
+         case STRCASE(y,e,s):
+         case 'y':
+             return 1;
+         case STRCASE(n,o):
+         case 'n':
+             return 0;
+         default:
+             return -1;
+       }
+     }
 
-int main(int argc,char *argv[]) {
-  for(argc--, argv++; argc > 0; argc--, argv++)
-    printf("%s %d\\n", *argv, yes_or_not(*argv));
-}
+     int main(int argc,char *argv[]) {
+       for(argc--, argv++; argc > 0; argc--, argv++)
+         printf("%s %d\\n", *argv, yes_or_not(*argv));
+     }
 .fi
+
+The same example can be tranlated in C++ as follows:
+.BR
+.sp
+\&
+.nf
+     #include <iostream>
+     #include <strcase.h>
+
+     using namespace std;
+
+     int yes_or_not(const char *s) {
+       switch (strcase_tolower(s)) {
+         case STRCASE("yes"):
+         case 'y':
+             return 1;
+         case STRCASE("no"):
+         case 'n':
+             return 0;
+         default:
+             return -1;
+       }
+     }
+
+     int main(int argc,char *argv[]) {
+       for(argc--, argv++; argc > 0; argc--, argv++)
+         cout << *argv << " " << yes_or_not(*argv) << endl;
+     }
+.fi
+
 .SH BUGS
 Bug reports should be addressed to <info@virtualsquare.org>
 .SH AUTHORS
